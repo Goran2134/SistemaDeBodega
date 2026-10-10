@@ -62,7 +62,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 // Usando hash seguro PBKDF2
                 Usuario admin = new Usuario();
                 admin.username = "admin";
-                admin.password_hash = PasswordUtils.hashPassword("Admin");
+                admin.password_hash = PasswordUtils.hashPassword("Admin123*");
                 admin.nombre_completo = "Administrador General";
                 admin.id_rol = 1;
                 admin.activo = 1;

@@ -32,4 +32,25 @@
         android:textStyle="italic"
         android:textColor="@color/primary" />
 
+    <!-- Botón de Eliminar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/btnEliminarItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/error"
+            android:text="Eliminar"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp" />
+
+    </LinearLayout>
+
 </LinearLayout>

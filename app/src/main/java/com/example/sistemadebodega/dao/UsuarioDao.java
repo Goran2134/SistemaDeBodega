@@ -1,6 +1,7 @@
 package com.example.sistemadebodega.dao;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import com.example.sistemadebodega.model.Usuario;
@@ -13,6 +14,9 @@ public interface UsuarioDao {
 
     @Insert
     void insertarUsuario(Usuario usuario);
+
+    @Delete
+    void eliminarUsuario(Usuario usuario);
 
     @Query("SELECT COUNT(*) FROM usuario WHERE username = :username")
     int contarPorUsername(String username);
