@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">SistemaDeBodega</string>
+    <string name="login_titulo">Sistema de Bodega</string>
+    <string name="hint_username">Nombre de usuario</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="btn_ingresar">Iniciar Sesión</string>
+    <string name="dashboard_titulo">Panel Principal</string>
+    <string name="menu_usuarios">Gestión de Usuarios</string>
+    <string name="menu_categorias">Gestión de Categorías</string>
+    <string name="menu_cerrar_sesion">Cerrar Sesión</string>
+    <string name="cat_titulo">Categorías</string>
+    <string name="hint_nombre_categoria">Nombre de la categoría</string>
+    <string name="hint_desc_categoria">Descripción de la categoría</string>
+    <string name="btn_registrar_categoria">Registrar Categoría</string>
+    <string name="user_titulo">Usuarios</string>
+    <string name="btn_nuevo_usuario">Nuevo Usuario</string>
+    <string name="hint_nombre_completo">Nombre completo</string>
+    <string name="msg_fill_fields">Por favor, llene todos los campos</string>
+    <string name="msg_categoria_registrada">Categoría registrada exitosamente</string>
+    <string name="error_categoria_duplicada">La categoría ya existe</string>
+    <string name="dialog_logout_titulo">Cerrar Sesión</string>
+    <string name="dialog_logout_mensaje">¿Está seguro de que desea cerrar sesión?</string>
+    <string name="dialog_si">Sí</string>
+    <string name="dialog_cancelar">Cancelar</string>
+    <string name="error_usuario_inactivo">El usuario se encuentra inactivo</string>
+    <string name="error_credenciales">Nombre de usuario o contraseña incorrectos</string>
+    <string name="msg_usuario_registrado">Usuario registrado exitosamente</string>
+    <string name="error_username_duplicado">El nombre de usuario ya se encuentra registrado</string>
+</resources>
