@@ -50,6 +50,7 @@ public class CategoriasActivity extends AppCompatActivity {
                     .show();
         });
 
+
         rvCategorias.setAdapter(categoriaAdapter);
 
         cargarCategoriasActivas();
