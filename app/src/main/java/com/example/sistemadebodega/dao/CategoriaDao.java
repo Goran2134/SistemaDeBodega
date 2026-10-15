@@ -1,6 +1,7 @@
 package com.example.sistemadebodega.dao;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import com.example.sistemadebodega.model.Categoria;
@@ -13,6 +14,9 @@ public interface CategoriaDao {
 
     @Insert
     long insertarCategoria(Categoria categoria);
+
+    @Delete
+    void eliminarCategoria(Categoria categoria);
 
     @Query("SELECT COUNT(*) FROM categoria WHERE nombre_categoria = :nombre")
     int contarPorNombre(String nombre);

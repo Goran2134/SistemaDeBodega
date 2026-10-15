@@ -23,4 +23,25 @@
         android:textSize="14sp"
         android:textColor="@color/gray" />
 
+    <!-- Botón de Eliminar Categoría -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/btnEliminarCategoriaItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/error"
+            android:text="@string/btn_eliminar"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp" />
+
+    </LinearLayout>
+
 </LinearLayout>

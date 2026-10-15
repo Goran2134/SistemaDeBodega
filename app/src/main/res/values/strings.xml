@@ -26,4 +26,7 @@
     <string name="error_credenciales">Nombre de usuario o contraseña incorrectos</string>
     <string name="msg_usuario_registrado">Usuario registrado exitosamente</string>
     <string name="error_username_duplicado">El nombre de usuario ya se encuentra registrado</string>
+    <string name="slogan_bienvenida">Una nueva forma de gestionar</string>
+    <string name="btn_eliminar">Eliminar</string>
+    <string name="msg_categoria_eliminada">Categoría eliminada exitosamente</string>
 </resources>

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,7 +37,19 @@ public class CategoriasActivity extends AppCompatActivity {
         db = AppDatabase.getDatabase(getApplicationContext());
 
         rvCategorias.setLayoutManager(new LinearLayoutManager(this));
-        categoriaAdapter = new CategoriaAdapter(listaCategorias);
+
+        // Configurar el adaptador con el listener de eliminación
+        categoriaAdapter = new CategoriaAdapter(listaCategorias, categoria -> {
+            new AlertDialog.Builder(CategoriasActivity.this)
+                    .setTitle("Eliminar Categoría")
+                    .setMessage("¿Está seguro de eliminar la categoría '" + categoria.nombre_categoria + "'?")
+                    .setPositiveButton("Sí, eliminar", (dialog, which) -> {
+                        eliminarCategoriaDeBaseDeDatos(categoria);
+                    })
+                    .setNegativeButton("Cancelar", null)
+                    .show();
+        });
+
         rvCategorias.setAdapter(categoriaAdapter);
 
         cargarCategoriasActivas();
@@ -83,6 +96,16 @@ public class CategoriasActivity extends AppCompatActivity {
             List<Categoria> categoriasDao = db.categoriaDao().obtenerCategoriasActivas();
             runOnUiThread(() -> {
                 categoriaAdapter.actualizarLista(categoriasDao);
+            });
+        });
+    }
+
+    private void eliminarCategoriaDeBaseDeDatos(Categoria categoria) {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            db.categoriaDao().eliminarCategoria(categoria);
+            runOnUiThread(() -> {
+                Toast.makeText(this, getString(R.string.msg_categoria_eliminada), Toast.LENGTH_SHORT).show();
+                cargarCategoriasActivas(); // Recargar el listado tras eliminar
             });
         });
     }
