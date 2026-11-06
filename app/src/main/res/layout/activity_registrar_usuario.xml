@@ -1,74 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:background="#F3F5F7">
 
-    <TextView
+    <!-- ENCABEZADO PRINCIPAL -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="Registrar Nuevo Usuario"
-        android:textColor="@color/primary"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="20dp">
 
-    <EditText
-        android:id="@+id/etNombreCompletoReg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:background="@android:drawable/editbox_background_normal"
-        android:hint="@string/hint_nombre_completo"
-        android:inputType="textPersonName"
-        android:padding="14dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrar Nuevo Usuario"
+            android:textColor="#172B4D"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/etUsernameReg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:background="@android:drawable/editbox_background_normal"
-        android:hint="@string/hint_username"
-        android:inputType="text"
-        android:padding="14dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Gestión y administración de usuarios"
+            android:textColor="#667085"
+            android:textSize="13sp" />
 
-    <EditText
-        android:id="@+id/etPasswordReg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:background="@android:drawable/editbox_background_normal"
-        android:hint="@string/hint_password"
-        android:inputType="textPassword"
-        android:padding="14dp" />
+    </LinearLayout>
 
-    <TextView
+    <!-- LÍNEA DE SEPARACIÓN -->
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Asignar Rol:"
-        android:textColor="@color/black"
-        android:textSize="14sp" />
+        android:layout_height="1dp"
+        android:background="#DDE3EA" />
 
-    <Spinner
-        android:id="@+id/spinnerRoles"
+    <!-- CONTENIDO DESPLAZABLE -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:padding="8dp"
-        android:background="@android:drawable/btn_dropdown" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:clipToPadding="false">
 
-    <Button
-        android:id="@+id/btnGuardarUsuario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/primary"
-        android:padding="14dp"
-        android:text="Guardar Usuario"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- FORMULARIO DE REGISTRO -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:padding="18dp"
+                android:elevation="2dp">
+
+                <!-- TÍTULO DEL FORMULARIO -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Datos del usuario"
+                    android:textColor="#1E293B"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="22dp"
+                    android:text="Complete la información para registrar un nuevo usuario."
+                    android:textColor="#7A8699"
+                    android:textSize="12sp" />
+
+                <!-- NOMBRE COMPLETO -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre completo"
+                    android:textColor="#344054"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="7dp" />
+
+                <EditText
+                    android:id="@+id/etNombreCompletoReg"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="#F1F4F8"
+                    android:hint="@string/hint_nombre_completo"
+                    android:inputType="textPersonName"
+                    android:singleLine="true"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:textColor="#1E293B"
+                    android:textColorHint="#98A2B3"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="18dp" />
+
+                <!-- NOMBRE DE USUARIO -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre de usuario"
+                    android:textColor="#344054"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="7dp" />
+
+                <EditText
+                    android:id="@+id/etUsernameReg"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="#F1F4F8"
+                    android:hint="@string/hint_username"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:textColor="#1E293B"
+                    android:textColorHint="#98A2B3"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="18dp" />
+
+                <!-- CONTRASEÑA -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Contraseña"
+                    android:textColor="#344054"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="7dp" />
+
+                <EditText
+                    android:id="@+id/etPasswordReg"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="#F1F4F8"
+                    android:hint="@string/hint_password"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:textColor="#1E293B"
+                    android:textColorHint="#98A2B3"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="22dp" />
+
+                <!-- SEPARADOR -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#E5E9EF"
+                    android:layout_marginBottom="20dp" />
+
+                <!-- ASIGNACIÓN DE ROL -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Permisos de acceso"
+                    android:textColor="#1E293B"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="5dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Seleccione el rol que tendrá el usuario dentro del sistema."
+                    android:textColor="#7A8699"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Rol del usuario"
+                    android:textColor="#344054"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="7dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerRoles"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:layout_marginBottom="24dp" />
+
+                <!-- BOTÓN GUARDAR -->
+                <Button
+                    android:id="@+id/btnGuardarUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:backgroundTint="#243B53"
+                    android:text="Guardar Usuario"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:elevation="0dp" />
+
+            </LinearLayout>
+
+            <!-- NOTA INFORMATIVA -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:gravity="center"
+                android:text="Administración de usuarios · Sistema de Bodega"
+                android:textColor="#98A2B3"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

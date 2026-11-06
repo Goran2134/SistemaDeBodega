@@ -1,53 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:background="#F3F5F7"
+    android:fillViewport="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="@string/login_titulo"
-        android:textColor="@color/primary"
-        android:textSize="28sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/etUser"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:background="@android:drawable/editbox_background_normal"
-        android:hint="@string/hint_username"
-        android:inputType="textEmailAddress"
-        android:padding="14dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp">
 
-    <EditText
-        android:id="@+id/etPass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:background="@android:drawable/editbox_background_normal"
-        android:hint="@string/hint_password"
-        android:inputType="textPassword"
-        android:padding="14dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray" />
+        <!-- IDENTIDAD DEL SISTEMA -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="32dp">
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/primary"
-        android:padding="14dp"
-        android:text="@string/btn_ingresar"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SISTEMA DE BODEGA"
+                android:textColor="#172B4D"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:letterSpacing="0.04" />
 
-</LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Plataforma de gestión de inventario"
+                android:textColor="#667085"
+                android:textSize="13sp"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+        <!-- FORMULARIO DE ACCESO -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:padding="22dp"
+            android:elevation="3dp">
+
+            <!-- ENCABEZADO -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/login_titulo"
+                android:textColor="#1E293B"
+                android:textSize="21sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="24dp"
+                android:text="Ingrese sus credenciales para acceder al sistema."
+                android:textColor="#7A8699"
+                android:textSize="12sp" />
+
+            <!-- USUARIO -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre de usuario"
+                android:textColor="#344054"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/etUser"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#F1F4F8"
+                android:hint="@string/hint_username"
+                android:inputType="text"
+                android:singleLine="true"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:textColor="#1E293B"
+                android:textColorHint="#98A2B3"
+                android:textSize="14sp"
+                android:layout_marginBottom="20dp" />
+
+            <!-- CONTRASEÑA -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contraseña"
+                android:textColor="#344054"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/etPass"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#F1F4F8"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:textColor="#1E293B"
+                android:textColorHint="#98A2B3"
+                android:textSize="14sp"
+                android:layout_marginBottom="26dp" />
+
+            <!-- BOTÓN DE ACCESO -->
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:backgroundTint="#243B53"
+                android:text="@string/btn_ingresar"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:elevation="0dp" />
+
+            <!-- SEPARADOR -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E5E9EF"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- MENSAJE INFORMATIVO -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Acceso exclusivo para usuarios autorizados"
+                android:textColor="#98A2B3"
+                android:textSize="11sp"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+        <!-- PIE DE PÁGINA -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="SISTEMA DE GESTIÓN DE BODEGA"
+            android:textColor="#98A2B3"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.06"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Control y administración de inventario"
+            android:textColor="#98A2B3"
+            android:textSize="11sp"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+</ScrollView>

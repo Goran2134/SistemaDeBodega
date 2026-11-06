@@ -1,65 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:background="#F3F5F7">
 
-    <TextView
+    <!-- ENCABEZADO PRINCIPAL -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/cat_titulo"
-        android:textColor="@color/primary"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="20dp">
 
-    <!-- Formulario de Registro -->
-    <EditText
-        android:id="@+id/etNombreCategoriaReg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:background="@android:drawable/editbox_background_normal"
-        android:hint="@string/hint_nombre_categoria"
-        android:inputType="text"
-        android:padding="12dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cat_titulo"
+            android:textColor="#172B4D"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/etDescCategoriaReg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:background="@android:drawable/editbox_background_normal"
-        android:hint="@string/hint_desc_categoria"
-        android:inputType="text"
-        android:padding="12dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Gestión y administración de categorías"
+            android:textColor="#667085"
+            android:textSize="13sp" />
 
-    <Button
-        android:id="@+id/btnRegistrarCategoria"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/primary"
-        android:padding="12dp"
-        android:text="@string/btn_registrar_categoria"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
+    </LinearLayout>
 
-    <TextView
+    <!-- LÍNEA DE SEPARACIÓN -->
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Categorías Activas"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:layout_height="1dp"
+        android:background="#DDE3EA" />
 
-    <!-- Listado Reactivo -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCategorias"
+    <!-- CONTENIDO PRINCIPAL -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- FORMULARIO -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:padding="18dp"
+            android:elevation="2dp">
+
+            <!-- TÍTULO FORMULARIO -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registrar categoría"
+                android:textColor="#1E293B"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="18dp"
+                android:text="Ingrese los datos de la nueva categoría."
+                android:textColor="#7A8699"
+                android:textSize="12sp" />
+
+            <!-- NOMBRE -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre de categoría"
+                android:textColor="#344054"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="7dp" />
+
+            <EditText
+                android:id="@+id/etNombreCategoriaReg"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="#F1F4F8"
+                android:hint="@string/hint_nombre_categoria"
+                android:inputType="textCapSentences"
+                android:singleLine="true"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:textColor="#1E293B"
+                android:textColorHint="#98A2B3"
+                android:textSize="14sp"
+                android:layout_marginBottom="18dp" />
+
+            <!-- DESCRIPCIÓN -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descripción"
+                android:textColor="#344054"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="7dp" />
+
+            <EditText
+                android:id="@+id/etDescCategoriaReg"
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:background="#F1F4F8"
+                android:hint="@string/hint_desc_categoria"
+                android:inputType="textCapSentences|textMultiLine"
+                android:gravity="top|start"
+                android:padding="14dp"
+                android:textColor="#1E293B"
+                android:textColorHint="#98A2B3"
+                android:textSize="14sp"
+                android:layout_marginBottom="20dp" />
+
+            <!-- BOTÓN -->
+            <Button
+                android:id="@+id/btnRegistrarCategoria"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:backgroundTint="#243B53"
+                android:text="@string/btn_registrar_categoria"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:elevation="0dp" />
+
+        </LinearLayout>
+
+        <!-- ENCABEZADO DEL LISTADO -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Categorías registradas"
+                android:textColor="#1E293B"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ACTIVAS"
+                android:textColor="#475569"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.08" />
+
+        </LinearLayout>
+
+        <!-- LÍNEA DIVISORIA -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D8DEE6"
+            android:layout_marginBottom="12dp" />
+
+        <!-- LISTADO -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCategorias"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingBottom="12dp" />
+
+    </LinearLayout>
 
 </LinearLayout>
