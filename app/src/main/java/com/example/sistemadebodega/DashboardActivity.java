@@ -30,9 +30,18 @@ public class DashboardActivity extends AppCompatActivity {
         Button btnMenuUsuarios = findViewById(R.id.btnMenuUsuarios);
         Button btnMenuCategorias = findViewById(R.id.btnMenuCategorias);
         Button btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
+        Button btnMenuProductos = findViewById(R.id.btnMenuProductos);
 
         String nombre = sessionManager.obtenerNombreCompleto();
         tvBienvenida.setText("Bienvenido, " + nombre);
+
+        btnMenuProductos.setOnClickListener(v -> {
+            Intent intent = new Intent(
+                    DashboardActivity.this,
+                    ProductosActivity.class
+            );
+            startActivity(intent);
+        });
 
         // Control de acceso al módulo de usuarios con id_rol == 1)
         btnMenuUsuarios.setOnClickListener(v -> {

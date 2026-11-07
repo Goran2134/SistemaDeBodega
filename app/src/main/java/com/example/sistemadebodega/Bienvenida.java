@@ -18,26 +18,53 @@ public class Bienvenida extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_bienvenida);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        ViewCompat.setOnApplyWindowInsetsListener(
+                findViewById(R.id.main),
+                (v, insets) -> {
 
-        // Transición automática del Splash a Login o Dashboard tras 2 segundos
+                    Insets systemBars = insets.getInsets(
+                            WindowInsetsCompat.Type.systemBars()
+                    );
+
+                    v.setPadding(
+                            systemBars.left,
+                            systemBars.top,
+                            systemBars.right,
+                            systemBars.bottom
+                    );
+
+                    return insets;
+                }
+        );
+
+        // Eliminar cualquier sesión guardada anteriormente
+        SessionManager sessionManager =
+                new SessionManager(Bienvenida.this);
+
+        sessionManager.cerrarSesion();
+
+        // Mostrar bienvenida durante 2 segundos
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            SessionManager sessionManager = new SessionManager(Bienvenida.this);
-            Intent intent;
-            if (sessionManager.isLoggedIn()) {
-                intent = new Intent(Bienvenida.this, DashboardActivity.class);
-            } else {
-                intent = new Intent(Bienvenida.this, LoginActivity.class);
-            }
+
+            // Abrir siempre el inicio de sesión
+            Intent intent = new Intent(
+                    Bienvenida.this,
+                    LoginActivity.class
+            );
+
+            // Limpiar las pantallas anteriores
+            intent.addFlags(
+                    Intent.FLAG_ACTIVITY_NEW_TASK |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK
+            );
+
             startActivity(intent);
             finish();
+
         }, 2000);
     }
 }

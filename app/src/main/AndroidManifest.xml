@@ -11,32 +11,58 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SistemaDeBodega">
+
+        <!-- PANTALLA INICIAL -->
         <activity
             android:name=".Bienvenida"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+        <!-- INICIO DE SESIÓN -->
         <activity
             android:name=".LoginActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- PANEL PRINCIPAL -->
         <activity
             android:name=".DashboardActivity"
             android:exported="false" />
+
+        <!-- GESTIÓN DE CATEGORÍAS -->
         <activity
             android:name=".CategoriasActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- GESTIÓN DE PRODUCTOS -->
+        <activity
+            android:name=".ProductosActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- REGISTRAR PRODUCTOS -->
+        <activity
+            android:name=".FormularioProductoActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- GESTIÓN DE USUARIOS -->
         <activity
             android:name=".UsuariosActivity"
             android:exported="false" />
+
+        <!-- REGISTRAR USUARIOS -->
         <activity
             android:name=".RegistrarUsuarioActivity"
             android:exported="false" />
+
     </application>
 
 </manifest>

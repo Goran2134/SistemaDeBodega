@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F3F5F7">
+
+    <!-- ENCABEZADO -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrar producto"
+            android:textColor="#172B4D"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Ingrese la información del producto"
+            android:textColor="#667085"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <!-- FORMULARIO DESPLAZABLE -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:padding="20dp"
+                android:elevation="2dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Código SKU *"
+                    android:textColor="#1E293B"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etSkuProducto"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="18dp"
+                    android:background="#F1F4F8"
+                    android:hint="Ej: PROD-001"
+                    android:inputType="textCapCharacters"
+                    android:singleLine="true"
+                    android:padding="12dp"
+                    android:textColor="#1E293B"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre del producto *"
+                    android:textColor="#1E293B"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etNombreProducto"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="18dp"
+                    android:background="#F1F4F8"
+                    android:hint="Ej: Arroz grado 1"
+                    android:inputType="textCapSentences"
+                    android:singleLine="true"
+                    android:padding="12dp"
+                    android:textColor="#1E293B"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Descripción"
+                    android:textColor="#1E293B"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etDescripcionProducto"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="18dp"
+                    android:background="#F1F4F8"
+                    android:hint="Descripción del producto"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:gravity="top"
+                    android:padding="12dp"
+                    android:textColor="#1E293B"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Categoría *"
+                    android:textColor="#1E293B"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+                <Spinner
+                    android:id="@+id/spCategoriaProducto"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="18dp"
+                    android:backgroundTint="#243B53" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Unidad de medida *"
+                    android:textColor="#1E293B"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+                <Spinner
+                    android:id="@+id/spUnidadProducto"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="18dp"
+                    android:backgroundTint="#243B53" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Stock inicial *"
+                    android:textColor="#1E293B"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etStockInicial"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="#F1F4F8"
+                    android:hint="Ej: 25"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:padding="12dp"
+                    android:textColor="#1E293B"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btnGuardarProducto"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:backgroundTint="#243B53"
+                    android:text="Guardar producto"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:elevation="0dp" />
+
+                <Button
+                    android:id="@+id/btnCancelarProducto"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="#E5EAF0"
+                    android:text="Cancelar"
+                    android:textAllCaps="false"
+                    android:textColor="#344054"
+                    android:textSize="14sp"
+                    android:elevation="0dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

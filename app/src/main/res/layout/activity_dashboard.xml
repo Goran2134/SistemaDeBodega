@@ -10,29 +10,58 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:background="#FFFFFF"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
-        android:paddingTop="24dp"
-        android:paddingBottom="20dp">
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp">
 
-        <TextView
-            android:id="@+id/tvBienvenidaDashboard"
-            android:layout_width="match_parent"
+        <!-- BIENVENIDA -->
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/dashboard_titulo"
-            android:textColor="#172B4D"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Panel de administración del sistema"
-            android:textColor="#667085"
-            android:textSize="13sp" />
+            <TextView
+                android:id="@+id/tvBienvenidaDashboard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dashboard_titulo"
+                android:textColor="#172B4D"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                android:maxLines="2" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Panel de administración del sistema"
+                android:textColor="#667085"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <!-- CERRAR SESIÓN -->
+        <Button
+            android:id="@+id/btnCerrarSesion"
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:layout_marginStart="12dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:backgroundTint="#B42318"
+            android:text="@string/menu_cerrar_sesion"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:elevation="0dp" />
 
     </LinearLayout>
 
@@ -43,156 +72,182 @@
         android:background="#DDE3EA" />
 
     <!-- CONTENIDO PRINCIPAL -->
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:clipToPadding="false">
 
-        <!-- SECCIÓN DE NAVEGACIÓN -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Módulos del sistema"
-            android:textColor="#1E293B"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="5dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Seleccione un módulo para administrar su información."
-            android:textColor="#7A8699"
-            android:textSize="12sp"
-            android:layout_marginBottom="22dp" />
-
-        <!-- MÓDULO DE USUARIOS -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#FFFFFF"
-            android:padding="18dp"
-            android:elevation="2dp"
-            android:layout_marginBottom="16dp">
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
 
+            <!-- SECCIÓN DE NAVEGACIÓN -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Administración de usuarios"
+                android:text="Módulos del sistema"
                 android:textColor="#1E293B"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="6dp" />
+                android:layout_marginBottom="5dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gestione los usuarios y sus permisos de acceso al sistema."
+                android:text="Seleccione un módulo para administrar su información."
                 android:textColor="#7A8699"
                 android:textSize="12sp"
                 android:layout_marginBottom="18dp" />
 
-            <Button
-                android:id="@+id/btnMenuUsuarios"
+            <!-- MÓDULO DE USUARIOS -->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:backgroundTint="#243B53"
-                android:text="@string/menu_usuarios"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:elevation="0dp" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:padding="16dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="14dp">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Administración de usuarios"
+                    android:textColor="#1E293B"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="6dp" />
 
-        <!-- MÓDULO DE CATEGORÍAS -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="#FFFFFF"
-            android:padding="18dp"
-            android:elevation="2dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Gestione los usuarios y sus permisos de acceso al sistema."
+                    android:textColor="#7A8699"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="14dp" />
+
+                <Button
+                    android:id="@+id/btnMenuUsuarios"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:backgroundTint="#243B53"
+                    android:text="@string/menu_usuarios"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:elevation="0dp" />
+
+            </LinearLayout>
+
+            <!-- MÓDULO DE CATEGORÍAS -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:padding="16dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="14dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Administración de categorías"
+                    android:textColor="#1E293B"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="6dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Organice y administre las categorías de productos del inventario."
+                    android:textColor="#7A8699"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="14dp" />
+
+                <Button
+                    android:id="@+id/btnMenuCategorias"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:backgroundTint="#243B53"
+                    android:text="@string/menu_categorias"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:elevation="0dp" />
+
+            </LinearLayout>
+
+            <!-- MÓDULO DE PRODUCTOS -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:padding="16dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="14dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Administración de productos"
+                    android:textColor="#1E293B"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="6dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Consulte, busque y administre los productos registrados en el inventario."
+                    android:textColor="#7A8699"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="14dp" />
+
+                <Button
+                    android:id="@+id/btnMenuProductos"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:backgroundTint="#243B53"
+                    android:text="Gestionar productos"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:elevation="0dp" />
+
+            </LinearLayout>
+
+            <!-- PIE DE PÁGINA -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="12dp"
+                android:background="#D8DEE6" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Administración de categorías"
-                android:textColor="#1E293B"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="6dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Organice y administre las categorías de productos del inventario."
-                android:textColor="#7A8699"
-                android:textSize="12sp"
-                android:layout_marginBottom="18dp" />
-
-            <Button
-                android:id="@+id/btnMenuCategorias"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:backgroundTint="#243B53"
-                android:text="@string/menu_categorias"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:elevation="0dp" />
+                android:gravity="center"
+                android:text="Sistema de Bodega · Panel de administración"
+                android:textColor="#98A2B3"
+                android:textSize="11sp" />
 
         </LinearLayout>
 
-        <!-- ESPACIO FLEXIBLE -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <!-- SECCIÓN DE SESIÓN -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#D8DEE6"
-            android:layout_marginBottom="18dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sesión de usuario"
-            android:textColor="#344054"
-            android:textSize="13sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="12dp" />
-
-        <!-- CERRAR SESIÓN -->
-        <Button
-            android:id="@+id/btnCerrarSesion"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:backgroundTint="#B42318"
-            android:text="@string/menu_cerrar_sesion"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:elevation="0dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:text="Sistema de Bodega · Panel de administración"
-            android:textColor="#98A2B3"
-            android:textSize="11sp" />
-
-    </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
