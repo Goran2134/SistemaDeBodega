@@ -53,6 +53,17 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
+        <!-- MOVIMIENTOS DE BODEGA -->
+        <activity
+            android:name=".MovimientosActivity"
+            android:exported="false" />
+
+        <!-- FORMULARIO MOVIMIENTO (ENTRADA / SALIDA) -->
+        <activity
+            android:name=".FormularioMovimientoActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
         <!-- GESTIÓN DE USUARIOS -->
         <activity
             android:name=".UsuariosActivity"

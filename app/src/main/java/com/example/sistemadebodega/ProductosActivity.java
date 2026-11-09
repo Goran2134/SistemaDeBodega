@@ -57,6 +57,8 @@ public class ProductosActivity extends AppCompatActivity {
 
         Button btnRegistrarProducto =
                 findViewById(R.id.btnRegistrarProducto);
+        Button btnVolver = findViewById(R.id.btnVolverProductos);
+        btnVolver.setOnClickListener(v -> finish());
 
         db = AppDatabase.getDatabase(getApplicationContext());
 

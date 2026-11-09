@@ -10,28 +10,49 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:background="#FFFFFF"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
-        android:paddingTop="24dp"
-        android:paddingBottom="20dp">
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp"
+        android:elevation="1dp">
 
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/cat_titulo"
-            android:textColor="#172B4D"
-            android:textSize="25sp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cat_titulo"
+                android:textColor="#172B4D"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Gestión y administración de categorías"
+                android:textColor="#667085"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnVolverCategorias"
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:backgroundTint="#475569"
+            android:text="Volver"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
             android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Gestión y administración de categorías"
-            android:textColor="#667085"
-            android:textSize="13sp" />
 
     </LinearLayout>
 

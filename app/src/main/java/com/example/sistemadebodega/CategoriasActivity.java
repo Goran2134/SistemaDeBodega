@@ -34,6 +34,8 @@ public class CategoriasActivity extends AppCompatActivity {
         etDescCategoria = findViewById(R.id.etDescCategoriaReg);
         btnRegistrar = findViewById(R.id.btnRegistrarCategoria);
         rvCategorias = findViewById(R.id.rvCategorias);
+        Button btnVolver = findViewById(R.id.btnVolverCategorias);
+        btnVolver.setOnClickListener(v -> finish());
 
         db = AppDatabase.getDatabase(getApplicationContext());
 

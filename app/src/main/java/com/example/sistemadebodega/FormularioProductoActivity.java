@@ -12,10 +12,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sistemadebodega.data.AppDatabase;
 import com.example.sistemadebodega.model.Categoria;
+import com.example.sistemadebodega.model.MovimientoInventario;
 import com.example.sistemadebodega.model.Producto;
+import com.example.sistemadebodega.utils.SessionManager;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -269,6 +274,8 @@ public class FormularioProductoActivity extends AppCompatActivity {
         producto.id_categoria = idCategoria;
         producto.unidad_medida = unidad;
 
+        final int stockInicial = stock;
+
         guardando = true;
         btnGuardarProducto.setEnabled(false);
 
@@ -296,7 +303,20 @@ public class FormularioProductoActivity extends AppCompatActivity {
                 }
 
                 if (productoId == -1) {
-                    db.productoDao().insertarProducto(producto);
+                    db.runInTransaction(() -> {
+                        long nuevoId = db.productoDao().insertarProducto(producto);
+                        if (stockInicial > 0) {
+                            MovimientoInventario mov = new MovimientoInventario();
+                            mov.id_producto = (int) nuevoId;
+                            mov.id_usuario = new SessionManager(this).obtenerIdUsuario();
+                            mov.tipo_movimiento = "ENTRADA";
+                            mov.cantidad = stockInicial;
+                            mov.motivo = "Stock inicial al registrar producto";
+                            mov.observaciones = "Generado automáticamente";
+                            mov.fecha_hora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
+                            db.movimientoDao().insertarMovimiento(mov);
+                        }
+                    });
                 } else {
                     db.productoDao().actualizarProducto(producto);
                 }

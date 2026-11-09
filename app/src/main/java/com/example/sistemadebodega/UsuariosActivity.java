@@ -2,6 +2,7 @@ package com.example.sistemadebodega;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +31,8 @@ public class UsuariosActivity extends AppCompatActivity {
 
         rvUsuarios = findViewById(R.id.rvUsuarios);
         fabNuevoUsuario = findViewById(R.id.fabNuevoUsuario);
+        Button btnVolver = findViewById(R.id.btnVolverUsuarios);
+        btnVolver.setOnClickListener(v -> finish());
         db = AppDatabase.getDatabase(getApplicationContext());
 
         rvUsuarios.setLayoutManager(new LinearLayoutManager(this));

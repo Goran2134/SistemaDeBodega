@@ -11,11 +11,13 @@ import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.sistemadebodega.dao.CategoriaDao;
+import com.example.sistemadebodega.dao.MovimientoDao;
 import com.example.sistemadebodega.dao.ProductoDao;
 import com.example.sistemadebodega.dao.RolDao;
 import com.example.sistemadebodega.dao.UsuarioDao;
 
 import com.example.sistemadebodega.model.Categoria;
+import com.example.sistemadebodega.model.MovimientoInventario;
 import com.example.sistemadebodega.model.Producto;
 import com.example.sistemadebodega.model.Rol;
 import com.example.sistemadebodega.model.Usuario;
@@ -29,9 +31,10 @@ import java.util.concurrent.Executors;
                 Rol.class,
                 Usuario.class,
                 Categoria.class,
-                Producto.class
+                Producto.class,
+                MovimientoInventario.class
         },
-        version = 2,
+        version = 3,
         exportSchema = false
 )
 public abstract class AppDatabase extends RoomDatabase {
@@ -40,6 +43,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract UsuarioDao usuarioDao();
     public abstract CategoriaDao categoriaDao();
     public abstract ProductoDao productoDao();
+    public abstract MovimientoDao movimientoDao();
 
     private static volatile AppDatabase INSTANCE;
 
@@ -84,6 +88,29 @@ public abstract class AppDatabase extends RoomDatabase {
                 }
             };
 
+    // Migración de versión 2 a versión 3 (Tabla movimiento_inventario)
+    private static final Migration MIGRATION_2_3 =
+            new Migration(2, 3) {
+                @Override
+                public void migrate(@NonNull SupportSQLiteDatabase db) {
+                    db.execSQL(
+                            "CREATE TABLE IF NOT EXISTS `movimiento_inventario` (" +
+                                    "`id_movimiento` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                                    "`id_producto` INTEGER NOT NULL, " +
+                                    "`id_usuario` INTEGER NOT NULL, " +
+                                    "`tipo_movimiento` TEXT, " +
+                                    "`cantidad` INTEGER NOT NULL, " +
+                                    "`motivo` TEXT, " +
+                                    "`observaciones` TEXT, " +
+                                    "`fecha_hora` TEXT, " +
+                                    "FOREIGN KEY(`id_producto`) REFERENCES `producto`(`id_producto`) ON UPDATE NO ACTION ON DELETE RESTRICT, " +
+                                    "FOREIGN KEY(`id_usuario`) REFERENCES `usuario`(`id_usuario`) ON UPDATE NO ACTION ON DELETE RESTRICT)"
+                    );
+                    db.execSQL("CREATE INDEX IF NOT EXISTS `index_movimiento_inventario_id_producto` ON `movimiento_inventario` (`id_producto`)");
+                    db.execSQL("CREATE INDEX IF NOT EXISTS `index_movimiento_inventario_id_usuario` ON `movimiento_inventario` (`id_usuario`)");
+                }
+            };
+
     public static AppDatabase getDatabase(final Context context) {
 
         if (INSTANCE == null) {
@@ -97,7 +124,7 @@ public abstract class AppDatabase extends RoomDatabase {
                                     AppDatabase.class,
                                     "inventario_db"
                             )
-                            .addMigrations(MIGRATION_1_2)
+                            .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }

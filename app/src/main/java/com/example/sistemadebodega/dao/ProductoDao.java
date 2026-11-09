@@ -46,6 +46,16 @@ public interface ProductoDao {
             "WHERE codigo_sku = :sku LIMIT 1")
     Producto obtenerPorSku(String sku);
 
+    // Incrementar stock (Entrada)
+    @Query("UPDATE producto SET stock_actual = stock_actual + :cantidad " +
+            "WHERE id_producto = :id")
+    int incrementarStock(int id, int cantidad);
+
+    // Decrementar stock (Salida)
+    @Query("UPDATE producto SET stock_actual = stock_actual - :cantidad " +
+            "WHERE id_producto = :id AND stock_actual >= :cantidad")
+    int decrementarStock(int id, int cantidad);
+
     // RF-07: Modificar producto
     @Update
     int actualizarProducto(Producto producto);

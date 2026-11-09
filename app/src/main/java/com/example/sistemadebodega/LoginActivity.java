@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                         // 2. Verificar la contraseña usando PasswordUtils
                         if (PasswordUtils.verifyPassword(password, usuario.password_hash)) {
                             // 3. Persistir la sesión localmente y obtener el rol
-                            sessionManager.crearSesion(usuario.username, usuario.nombre_completo, usuario.id_rol);
+                            sessionManager.crearSesion(usuario.id_usuario, usuario.username, usuario.nombre_completo, usuario.id_rol);
 
                             // 4. Redirigir al Dashboard
                             Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
