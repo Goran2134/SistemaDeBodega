@@ -32,6 +32,7 @@ public class DashboardActivity extends AppCompatActivity {
         Button btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
         Button btnMenuProductos = findViewById(R.id.btnMenuProductos);
         Button btnMenuMovimientos = findViewById(R.id.btnMenuMovimientos);
+        Button btnMenuInformes = findViewById(R.id.btnMenuInformes);
 
         String nombre = sessionManager.obtenerNombreCompleto();
         tvBienvenida.setText("Bienvenido, " + nombre);
@@ -48,6 +49,14 @@ public class DashboardActivity extends AppCompatActivity {
             Intent intent = new Intent(
                     DashboardActivity.this,
                     MovimientosActivity.class
+            );
+            startActivity(intent);
+        });
+
+        btnMenuInformes.setOnClickListener(v -> {
+            Intent intent = new Intent(
+                    DashboardActivity.this,
+                    InformeStockActivity.class
             );
             startActivity(intent);
         });

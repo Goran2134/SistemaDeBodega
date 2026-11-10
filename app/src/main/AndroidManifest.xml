@@ -64,6 +64,11 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
+        <!-- INFORME DE STOCK (CU-06) -->
+        <activity
+            android:name=".InformeStockActivity"
+            android:exported="false" />
+
         <!-- GESTIÓN DE USUARIOS -->
         <activity
             android:name=".UsuariosActivity"

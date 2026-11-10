@@ -26,7 +26,7 @@ import java.util.concurrent.Executors;
 
 public class FormularioProductoActivity extends AppCompatActivity {
 
-    private EditText etSku, etNombre, etDescripcion, etStock;
+    private EditText etSku, etNombre, etDescripcion, etStock, etStockMinimo;
     private Spinner spCategoria, spUnidad;
     private Button btnGuardarProducto;
 
@@ -54,6 +54,7 @@ public class FormularioProductoActivity extends AppCompatActivity {
         etNombre = findViewById(R.id.etNombreProducto);
         etDescripcion = findViewById(R.id.etDescripcionProducto);
         etStock = findViewById(R.id.etStockInicial);
+        etStockMinimo = findViewById(R.id.etStockMinimo);
         spCategoria = findViewById(R.id.spCategoriaProducto);
         spUnidad = findViewById(R.id.spUnidadProducto);
         btnGuardarProducto = findViewById(R.id.btnGuardarProducto);
@@ -149,6 +150,9 @@ public class FormularioProductoActivity extends AppCompatActivity {
                         etDescripcion.setText(productoActual.descripcion);
                         etStock.setText(
                                 String.valueOf(productoActual.stock_actual)
+                        );
+                        etStockMinimo.setText(
+                                String.valueOf(productoActual.stock_minimo)
                         );
 
                         for (int i = 0; i < unidades.length; i++) {
@@ -257,6 +261,23 @@ public class FormularioProductoActivity extends AppCompatActivity {
         int idCategoria = categorias.get(posicion).id_categoria;
         String unidad = unidades[spUnidad.getSelectedItemPosition()];
 
+        String stockMinimoTexto = etStockMinimo.getText().toString().trim();
+        int stockMinimo = 5;
+        if (!stockMinimoTexto.isEmpty()) {
+            try {
+                stockMinimo = Integer.parseInt(stockMinimoTexto);
+                if (stockMinimo < 0) {
+                    etStockMinimo.setError("El stock mínimo no puede ser negativo");
+                    etStockMinimo.requestFocus();
+                    return;
+                }
+            } catch (NumberFormatException e) {
+                etStockMinimo.setError("Ingrese un valor válido");
+                etStockMinimo.requestFocus();
+                return;
+            }
+        }
+
         Producto producto;
 
         if (productoId != -1) {
@@ -273,6 +294,7 @@ public class FormularioProductoActivity extends AppCompatActivity {
         producto.descripcion = descripcion;
         producto.id_categoria = idCategoria;
         producto.unidad_medida = unidad;
+        producto.stock_minimo = stockMinimo;
 
         final int stockInicial = stock;
 

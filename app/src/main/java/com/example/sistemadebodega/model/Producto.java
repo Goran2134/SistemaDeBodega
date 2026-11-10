@@ -42,11 +42,15 @@ public class Producto {
     // Stock disponible
     public int stock_actual;
 
+    // Stock mínimo de alerta
+    public int stock_minimo;
+
     // 1 = Activo, 0 = Inactivo
     public int activo;
 
     public Producto() {
         this.activo = 1;
         this.stock_actual = 0;
+        this.stock_minimo = 5;
     }
 }

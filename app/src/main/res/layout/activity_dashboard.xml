@@ -271,6 +271,47 @@
 
             </LinearLayout>
 
+            <!-- MÓDULO DE INFORMES DE STOCK -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:padding="16dp"
+                android:elevation="2dp"
+                android:layout_marginBottom="14dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Informe de stock (CU-06)"
+                    android:textColor="#1E293B"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="6dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Consulte inventario actual, stock mínimo y estado de disponibilidad."
+                    android:textColor="#7A8699"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="14dp" />
+
+                <Button
+                    android:id="@+id/btnMenuInformes"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:backgroundTint="#0F766E"
+                    android:text="Generar informe de stock"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:elevation="0dp" />
+
+            </LinearLayout>
+
             <!-- PIE DE PÁGINA -->
             <View
                 android:layout_width="match_parent"

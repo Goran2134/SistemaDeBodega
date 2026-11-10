@@ -34,7 +34,7 @@ import java.util.concurrent.Executors;
                 Producto.class,
                 MovimientoInventario.class
         },
-        version = 3,
+        version = 4,
         exportSchema = false
 )
 public abstract class AppDatabase extends RoomDatabase {
@@ -111,6 +111,15 @@ public abstract class AppDatabase extends RoomDatabase {
                 }
             };
 
+    // Migración de versión 3 a versión 4 (Columna stock_minimo en producto)
+    private static final Migration MIGRATION_3_4 =
+            new Migration(3, 4) {
+                @Override
+                public void migrate(@NonNull SupportSQLiteDatabase db) {
+                    db.execSQL("ALTER TABLE `producto` ADD COLUMN `stock_minimo` INTEGER NOT NULL DEFAULT 5");
+                }
+            };
+
     public static AppDatabase getDatabase(final Context context) {
 
         if (INSTANCE == null) {
@@ -124,7 +133,7 @@ public abstract class AppDatabase extends RoomDatabase {
                                     AppDatabase.class,
                                     "inventario_db"
                             )
-                            .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
+                            .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }

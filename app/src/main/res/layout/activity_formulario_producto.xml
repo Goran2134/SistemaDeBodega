@@ -164,9 +164,31 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="24dp"
+                    android:layout_marginBottom="18dp"
                     android:background="#F1F4F8"
                     android:hint="Ej: 25"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:padding="12dp"
+                    android:textColor="#1E293B"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Stock mínimo de alerta *"
+                    android:textColor="#1E293B"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etStockMinimo"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="#F1F4F8"
+                    android:hint="Ej: 5"
                     android:inputType="number"
                     android:singleLine="true"
                     android:padding="12dp"
