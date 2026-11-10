@@ -67,7 +67,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- BOTONES DE ACCIÓN RÁPIDA -->
+        <!-- BOTONES DE ACCIÓN -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -102,15 +102,65 @@
 
         </LinearLayout>
 
+        <!-- HISTORIAL -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Historial de movimientos recientes"
+            android:text="Historial de movimientos"
             android:textColor="#1E293B"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginBottom="10dp" />
 
+        <!-- FILTRO PRODUCTO -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Filtrar por producto"
+            android:textColor="#344054"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spFiltroProductoMovimiento"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:background="#FFFFFF"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp" />
+
+        <!-- FILTRO USUARIO -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Filtrar por usuario"
+            android:textColor="#344054"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spFiltroUsuarioMovimiento"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:background="#FFFFFF"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp" />
+
+        <!-- CANTIDAD DE MOVIMIENTOS -->
+        <TextView
+            android:id="@+id/tvCantidadMovimientos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="10dp"
+            android:text="Cargando movimientos..."
+            android:textColor="#667085"
+            android:textSize="13sp" />
+
+        <!-- LISTADO -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerMovimientos"
             android:layout_width="match_parent"

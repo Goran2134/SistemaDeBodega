@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.sistemadebodega.utils.SessionManager;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -26,17 +28,36 @@ public class DashboardActivity extends AppCompatActivity {
             return;
         }
 
-        TextView tvBienvenida = findViewById(R.id.tvBienvenidaDashboard);
-        Button btnMenuUsuarios = findViewById(R.id.btnMenuUsuarios);
-        Button btnMenuCategorias = findViewById(R.id.btnMenuCategorias);
-        Button btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
-        Button btnMenuProductos = findViewById(R.id.btnMenuProductos);
-        Button btnMenuMovimientos = findViewById(R.id.btnMenuMovimientos);
-        Button btnMenuInformes = findViewById(R.id.btnMenuInformes);
+        // REFERENCIAS DE LA INTERFAZ
+        TextView tvBienvenida =
+                findViewById(R.id.tvBienvenidaDashboard);
 
+        Button btnMenuUsuarios =
+                findViewById(R.id.btnMenuUsuarios);
+
+        Button btnMenuCategorias =
+                findViewById(R.id.btnMenuCategorias);
+
+        Button btnMenuProductos =
+                findViewById(R.id.btnMenuProductos);
+
+        Button btnMenuMovimientos =
+                findViewById(R.id.btnMenuMovimientos);
+
+        Button btnMenuInformes =
+                findViewById(R.id.btnMenuInformes);
+
+        Button btnUbicacionEmpresa =
+                findViewById(R.id.btnUbicacionEmpresa);
+
+        Button btnCerrarSesion =
+                findViewById(R.id.btnCerrarSesion);
+
+        // MENSAJE DE BIENVENIDA
         String nombre = sessionManager.obtenerNombreCompleto();
         tvBienvenida.setText("Bienvenido, " + nombre);
 
+        // MÓDULO DE PRODUCTOS
         btnMenuProductos.setOnClickListener(v -> {
             Intent intent = new Intent(
                     DashboardActivity.this,
@@ -45,6 +66,7 @@ public class DashboardActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // MÓDULO DE MOVIMIENTOS
         btnMenuMovimientos.setOnClickListener(v -> {
             Intent intent = new Intent(
                     DashboardActivity.this,
@@ -53,6 +75,7 @@ public class DashboardActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // MÓDULO DE INFORMES
         btnMenuInformes.setOnClickListener(v -> {
             Intent intent = new Intent(
                     DashboardActivity.this,
@@ -61,42 +84,78 @@ public class DashboardActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Control de acceso al módulo de usuarios con id_rol == 1)
-        btnMenuUsuarios.setOnClickListener(v -> {
-            int rolId = sessionManager.obtenerIdRol();
-            if (rolId == 1) {
-                Intent intent = new Intent(DashboardActivity.this, UsuariosActivity.class);
-                startActivity(intent);
-            } else {
-                Toast.makeText(DashboardActivity.this, "Acceso restringido a Administradores", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // Acceso al módulo de categorías
-        btnMenuCategorias.setOnClickListener(v -> {
-            Intent intent = new Intent(DashboardActivity.this, CategoriasActivity.class);
+        // RF-24: UBICACIÓN DE LA EMPRESA
+        btnUbicacionEmpresa.setOnClickListener(v -> {
+            Intent intent = new Intent(
+                    DashboardActivity.this,
+                    UbicacionEmpresaActivity.class
+            );
             startActivity(intent);
         });
 
-        // Lógica de Cierre de Sesión
+        // MÓDULO DE USUARIOS (SOLO ADMINISTRADORES)
+        btnMenuUsuarios.setOnClickListener(v -> {
+            int rolId = sessionManager.obtenerIdRol();
+
+            if (rolId == 1) {
+                Intent intent = new Intent(
+                        DashboardActivity.this,
+                        UsuariosActivity.class
+                );
+                startActivity(intent);
+            } else {
+                Toast.makeText(
+                        DashboardActivity.this,
+                        "Acceso restringido a Administradores",
+                        Toast.LENGTH_SHORT
+                ).show();
+            }
+        });
+
+        // MÓDULO DE CATEGORÍAS
+        btnMenuCategorias.setOnClickListener(v -> {
+            Intent intent = new Intent(
+                    DashboardActivity.this,
+                    CategoriasActivity.class
+            );
+            startActivity(intent);
+        });
+
+        // CIERRE DE SESIÓN
         btnCerrarSesion.setOnClickListener(v -> {
             new AlertDialog.Builder(DashboardActivity.this)
                     .setTitle(getString(R.string.dialog_logout_titulo))
                     .setMessage(getString(R.string.dialog_logout_mensaje))
-                    .setPositiveButton(getString(R.string.dialog_si), (dialog, which) -> {
-                        // Limpiar datos de sesión local
-                        sessionManager.cerrarSesion();
-                        // Redirigir al Login limpiando la pila de actividades
-                        redirigirLogin();
-                    })
-                    .setNegativeButton(getString(R.string.dialog_cancelar), null)
+                    .setPositiveButton(
+                            getString(R.string.dialog_si),
+                            (dialog, which) -> {
+
+                                // Limpiar datos de sesión
+                                sessionManager.cerrarSesion();
+
+                                // Regresar al Login
+                                redirigirLogin();
+                            }
+                    )
+                    .setNegativeButton(
+                            getString(R.string.dialog_cancelar),
+                            null
+                    )
                     .show();
         });
     }
 
     private void redirigirLogin() {
-        Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        Intent intent = new Intent(
+                DashboardActivity.this,
+                LoginActivity.class
+        );
+
+        intent.setFlags(
+                Intent.FLAG_ACTIVITY_NEW_TASK |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK
+        );
+
         startActivity(intent);
         finish();
     }

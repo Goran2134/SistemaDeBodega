@@ -4,13 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,9 +19,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sistemadebodega.data.AppDatabase;
 import com.example.sistemadebodega.model.Producto;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanIntentResult;
+import com.journeyapps.barcodescanner.ScanOptions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -45,6 +50,13 @@ public class ProductosActivity extends AppCompatActivity {
             "Todos los productos"
     };
 
+    // RF-20: RESULTADO DEL ESCÁNER
+    private final ActivityResultLauncher<ScanOptions> escanerLauncher =
+            registerForActivityResult(
+                    new ScanContract(),
+                    this::procesarCodigoEscaneado
+            );
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +69,13 @@ public class ProductosActivity extends AppCompatActivity {
 
         Button btnRegistrarProducto =
                 findViewById(R.id.btnRegistrarProducto);
-        Button btnVolver = findViewById(R.id.btnVolverProductos);
+
+        Button btnVolver =
+                findViewById(R.id.btnVolverProductos);
+
+        Button btnEscanearCodigo =
+                findViewById(R.id.btnEscanearCodigo);
+
         btnVolver.setOnClickListener(v -> finish());
 
         db = AppDatabase.getDatabase(getApplicationContext());
@@ -95,6 +113,7 @@ public class ProductosActivity extends AppCompatActivity {
         rvProductos.setLayoutManager(
                 new LinearLayoutManager(this)
         );
+
         rvProductos.setAdapter(adapter);
 
         ArrayAdapter<String> filtroAdapter = new ArrayAdapter<>(
@@ -130,6 +149,7 @@ public class ProductosActivity extends AppCompatActivity {
                 }
         );
 
+        // REGISTRAR PRODUCTO
         btnRegistrarProducto.setOnClickListener(v -> {
             startActivity(new Intent(
                     this,
@@ -137,16 +157,27 @@ public class ProductosActivity extends AppCompatActivity {
             ));
         });
 
+        // RF-20: ABRIR ESCÁNER
+        btnEscanearCodigo.setOnClickListener(v -> abrirEscaner());
+
+        // BÚSQUEDA POR NOMBRE O SKU
         etBuscarProducto.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(
-                    CharSequence s, int start, int count, int after
+                    CharSequence s,
+                    int start,
+                    int count,
+                    int after
             ) {
             }
 
             @Override
             public void onTextChanged(
-                    CharSequence s, int start, int before, int count
+                    CharSequence s,
+                    int start,
+                    int before,
+                    int count
             ) {
                 cargarProductos();
             }
@@ -155,6 +186,67 @@ public class ProductosActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
             }
         });
+    }
+
+    // RF-20: INICIAR ESCANEO
+    private void abrirEscaner() {
+
+        ScanOptions opciones = new ScanOptions();
+
+        opciones.setDesiredBarcodeFormats(
+                ScanOptions.ALL_CODE_TYPES
+        );
+
+        opciones.setPrompt(
+                "Enfoque el código de barras del producto"
+        );
+
+        opciones.setBeepEnabled(true);
+        opciones.setOrientationLocked(false);
+        opciones.setBarcodeImageEnabled(false);
+
+        escanerLauncher.launch(opciones);
+    }
+
+    // RF-20: PROCESAR CÓDIGO LEÍDO
+    private void procesarCodigoEscaneado(ScanIntentResult resultado) {
+
+        if (resultado.getContents() == null) {
+
+            Toast.makeText(
+                    this,
+                    "Escaneo cancelado",
+                    Toast.LENGTH_SHORT
+            ).show();
+
+            return;
+        }
+
+        String codigo = resultado.getContents().trim();
+
+        if (codigo.isEmpty()) {
+            Toast.makeText(
+                    this,
+                    "No se pudo leer el código",
+                    Toast.LENGTH_SHORT
+            ).show();
+
+            return;
+        }
+
+        // Mostrar todos los productos para que el filtro
+        // de estado no oculte un producto escaneado.
+        spFiltroEstado.setSelection(2);
+
+        // Reutilizar la búsqueda existente.
+        etBuscarProducto.setText(codigo);
+        etBuscarProducto.setSelection(codigo.length());
+
+        Toast.makeText(
+                this,
+                "Código escaneado: " + codigo,
+                Toast.LENGTH_SHORT
+        ).show();
     }
 
     @Override
@@ -166,7 +258,8 @@ public class ProductosActivity extends AppCompatActivity {
     private void cargarProductos() {
 
         String texto = etBuscarProducto.getText()
-                .toString().trim();
+                .toString()
+                .trim();
 
         int filtro = spFiltroEstado.getSelectedItemPosition();
 
@@ -174,6 +267,7 @@ public class ProductosActivity extends AppCompatActivity {
 
         executor.execute(() -> {
             try {
+
                 List<Producto> todos =
                         db.productoDao().obtenerTodosLosProductos();
 
@@ -196,16 +290,14 @@ public class ProductosActivity extends AppCompatActivity {
                             ? "" : producto.codigo_sku;
 
                     if (!texto.isEmpty()) {
-                        String busqueda = texto.toLowerCase(
-                                java.util.Locale.ROOT
-                        );
 
-                        if (!nombre.toLowerCase(
-                                java.util.Locale.ROOT
-                        ).contains(busqueda)
-                                && !sku.toLowerCase(
-                                java.util.Locale.ROOT
-                        ).contains(busqueda)) {
+                        String busqueda =
+                                texto.toLowerCase(Locale.ROOT);
+
+                        if (!nombre.toLowerCase(Locale.ROOT)
+                                .contains(busqueda)
+                                && !sku.toLowerCase(Locale.ROOT)
+                                .contains(busqueda)) {
                             continue;
                         }
                     }
@@ -214,7 +306,9 @@ public class ProductosActivity extends AppCompatActivity {
                 }
 
                 runOnUiThread(() -> {
-                    if (isFinishing() || isDestroyed()
+
+                    if (isFinishing()
+                            || isDestroyed()
                             || consultaActual != numeroConsulta) {
                         return;
                     }
@@ -232,8 +326,11 @@ public class ProductosActivity extends AppCompatActivity {
                 });
 
             } catch (Exception e) {
+
                 runOnUiThread(() -> {
+
                     if (!isFinishing() && !isDestroyed()) {
+
                         Toast.makeText(
                                 this,
                                 "Error al cargar productos",
@@ -249,6 +346,7 @@ public class ProductosActivity extends AppCompatActivity {
             Producto producto,
             boolean reactivar
     ) {
+
         String accion = reactivar
                 ? "Reactivar"
                 : "Deshabilitar";
@@ -278,8 +376,10 @@ public class ProductosActivity extends AppCompatActivity {
             int productoId,
             boolean reactivar
     ) {
+
         executor.execute(() -> {
             try {
+
                 int filas;
 
                 if (reactivar) {
@@ -291,9 +391,13 @@ public class ProductosActivity extends AppCompatActivity {
                 }
 
                 runOnUiThread(() -> {
-                    if (isFinishing() || isDestroyed()) return;
+
+                    if (isFinishing() || isDestroyed()) {
+                        return;
+                    }
 
                     if (filas > 0) {
+
                         Toast.makeText(
                                 this,
                                 reactivar
@@ -303,7 +407,9 @@ public class ProductosActivity extends AppCompatActivity {
                         ).show();
 
                         cargarProductos();
+
                     } else {
+
                         Toast.makeText(
                                 this,
                                 "No se pudo actualizar el producto",
@@ -313,8 +419,11 @@ public class ProductosActivity extends AppCompatActivity {
                 });
 
             } catch (Exception e) {
+
                 runOnUiThread(() -> {
+
                     if (!isFinishing() && !isDestroyed()) {
+
                         Toast.makeText(
                                 this,
                                 "Error al actualizar el estado",

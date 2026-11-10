@@ -9,6 +9,7 @@
     android:layout_marginBottom="10dp"
     android:elevation="1dp">
 
+    <!-- TIPO DE MOVIMIENTO Y FECHA -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,6 +37,7 @@
 
     </LinearLayout>
 
+    <!-- PRODUCTO -->
     <TextView
         android:id="@+id/tvProductoMovimientoItem"
         android:layout_width="match_parent"
@@ -46,6 +48,7 @@
         android:textStyle="bold"
         android:layout_marginBottom="4dp" />
 
+    <!-- CANTIDAD Y MOTIVO -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -72,6 +75,19 @@
 
     </LinearLayout>
 
+    <!-- RF-21: USUARIO RESPONSABLE -->
+    <TextView
+        android:id="@+id/tvUsuarioMovimientoItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:text="Registrado por: Nombre del usuario"
+        android:textColor="#344054"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <!-- OBSERVACIONES -->
     <TextView
         android:id="@+id/tvObservacionesItem"
         android:layout_width="match_parent"

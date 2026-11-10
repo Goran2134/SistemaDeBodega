@@ -68,6 +68,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- REGISTRAR PRODUCTO -->
         <Button
             android:id="@+id/btnRegistrarProducto"
             android:layout_width="match_parent"
@@ -78,6 +79,7 @@
             android:textAllCaps="false"
             android:textColor="#FFFFFF" />
 
+        <!-- BUSCADOR -->
         <EditText
             android:id="@+id/etBuscarProducto"
             android:layout_width="match_parent"
@@ -92,6 +94,20 @@
             android:textColorHint="#98A2B3"
             android:textSize="14sp" />
 
+        <!-- RF-20: ESCÁNER DE CÓDIGOS -->
+        <Button
+            android:id="@+id/btnEscanearCodigo"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#0284C7"
+            android:text="Escanear código de barras"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <!-- FILTRO DE ESTADO -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -110,6 +126,7 @@
             android:paddingStart="12dp"
             android:paddingEnd="12dp" />
 
+        <!-- CANTIDAD DE PRODUCTOS -->
         <TextView
             android:id="@+id/tvCantidadProductos"
             android:layout_width="match_parent"
@@ -120,6 +137,7 @@
             android:textColor="#667085"
             android:textSize="13sp" />
 
+        <!-- LISTADO DE PRODUCTOS -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvProductos"
             android:layout_width="match_parent"

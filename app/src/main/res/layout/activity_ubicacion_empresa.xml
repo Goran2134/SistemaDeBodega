@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F5F7"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- TÍTULO -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ubicación de la empresa"
+        android:textColor="#243B53"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Seleccione la ubicación de la empresa o consulte su ubicación actual."
+        android:textColor="#667085"
+        android:textSize="14sp" />
+
+    <!-- MAPA -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/mapEmpresa"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp" />
+
+    <!-- COORDENADAS DE LA EMPRESA -->
+    <TextView
+        android:id="@+id/tvCoordenadas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:padding="12dp"
+        android:text="Seleccione una ubicación empresarial"
+        android:textColor="#344054"
+        android:textSize="13sp" />
+
+    <!-- GUARDAR UBICACIÓN -->
+    <Button
+        android:id="@+id/btnGuardarUbicacion"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#243B53"
+        android:text="Guardar ubicación de empresa"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <!-- UBICACIÓN ACTUAL -->
+    <TextView
+        android:id="@+id/tvMiUbicacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#FFFFFF"
+        android:padding="12dp"
+        android:text="Mi ubicación: no consultada"
+        android:textColor="#344054"
+        android:textSize="13sp" />
+
+    <!-- BOTONES GPS Y RUTA -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnMiUbicacion"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:backgroundTint="#0284C7"
+            android:text="Mi ubicación"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnComoLlegar"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            android:backgroundTint="#0F766E"
+            android:text="Cómo llegar"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>

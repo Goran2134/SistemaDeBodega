@@ -17,12 +17,19 @@ public interface MovimientoDao {
     @Query("SELECT * FROM movimiento_inventario ORDER BY id_movimiento DESC")
     List<MovimientoInventario> obtenerTodosLosMovimientos();
 
-    @Query("SELECT * FROM movimiento_inventario WHERE id_producto = :idProducto ORDER BY id_movimiento DESC")
+    @Query("SELECT * FROM movimiento_inventario " +
+            "WHERE id_producto = :idProducto " +
+            "ORDER BY id_movimiento DESC")
     List<MovimientoInventario> obtenerMovimientosPorProducto(int idProducto);
 
-    @Query("SELECT m.*, p.nombre AS nombre_producto, p.codigo_sku AS codigo_sku " +
+    // RF-21: HISTORIAL CON PRODUCTO Y USUARIO
+    @Query("SELECT m.*, " +
+            "p.nombre AS nombre_producto, " +
+            "p.codigo_sku AS codigo_sku, " +
+            "u.nombre_completo AS nombre_usuario " +
             "FROM movimiento_inventario m " +
             "INNER JOIN producto p ON m.id_producto = p.id_producto " +
+            "LEFT JOIN usuario u ON m.id_usuario = u.id_usuario " +
             "ORDER BY m.id_movimiento DESC")
     List<MovimientoConProducto> obtenerMovimientosConDetalle();
 
@@ -37,5 +44,6 @@ public interface MovimientoDao {
         public String fecha_hora;
         public String nombre_producto;
         public String codigo_sku;
+        public String nombre_usuario;
     }
 }
